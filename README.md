@@ -64,6 +64,8 @@ The setup wizard will configure your AI client automatically. It supports:
 
 ## Available Tools
 
+Every tool carries MCP annotations (`readOnlyHint`, `destructiveHint`, and so on), so clients like Claude group them into read-only and write tools and can ask before anything destructive.
+
 ### Macro Management
 | Tool | What it does |
 |------|--------------|
@@ -76,7 +78,10 @@ The setup wizard will configure your AI client automatically. It supports:
 | `km_delete_macro` | Remove a macro |
 | `km_enable_macro` | Turn macros on/off |
 | `km_run_macro` | Execute a macro right now |
-| `km_manage_group` | Organize macro groups |
+| `km_list_groups` | List macro groups |
+| `km_create_group` | Create a macro group |
+| `km_enable_group` | Turn macro groups on/off |
+| `km_delete_group` | Remove a macro group and its macros |
 
 ### Action Editing
 | Tool | What it does |
@@ -100,9 +105,14 @@ The setup wizard will configure your AI client automatically. It supports:
 ### Variables and Logs
 | Tool | What it does |
 |------|--------------|
-| `km_manage_variable` | Read, write, or delete KM variables |
+| `km_get_variable` | Read a variable |
+| `km_set_variable` | Write a variable |
+| `km_delete_variable` | Delete a variable |
 | `km_get_errors` | Find recent macro failures |
 | `km_get_log` | Search the engine log |
+
+### Macro Authoring Guide
+The `km_macro_authoring` prompt (also the `km-guide://macro_authoring` resource) loads a guide to building macros with this server: variable scopes, tokens vs. calculations, action XML, and a safe editing workflow. It links to the [Keyboard Maestro wiki](https://wiki.keyboardmaestro.com) for details on specific actions, tokens and functions.
 
 ## Support
 
