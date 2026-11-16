@@ -114,6 +114,22 @@ Every tool carries MCP annotations (`readOnlyHint`, `destructiveHint`, and so on
 ### Macro Authoring Guide
 The `km_macro_authoring` prompt (also the `km-guide://macro_authoring` resource) loads a guide to building macros with this server: variable scopes, tokens vs. calculations, action XML, and a safe editing workflow. It links to the [Keyboard Maestro wiki](https://wiki.keyboardmaestro.com) for details on specific actions, tokens and functions.
 
+### Renamed Tools in 1.1.0
+
+Two tools that took an `action` argument were split into one tool per action. If a script, prompt, or client config calls the old names, update it:
+
+| Old call | New tool |
+|----------|----------|
+| `km_manage_variable` with `action: "get"` | `km_get_variable` |
+| `km_manage_variable` with `action: "set"` | `km_set_variable` |
+| `km_manage_variable` with `action: "delete"` | `km_delete_variable` |
+| `km_manage_group` with `action: "list"` | `km_list_groups` |
+| `km_manage_group` with `action: "create"` | `km_create_group` |
+| `km_manage_group` with `action: "toggle"` | `km_enable_group` |
+| `km_manage_group` with `action: "delete"` | `km_delete_group` |
+
+The other arguments keep their names, except that `km_create_group` takes the new group's name as `name` (it was `identifier` on `km_manage_group`).
+
 ## Support
 
 Having issues? [Open an issue on GitHub](https://github.com/saihgupr/keyboard-maestro-mcp/issues)

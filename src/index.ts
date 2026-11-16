@@ -59,7 +59,7 @@ const GUIDE_URI = 'km-guide://macro_authoring';
 const server = new Server(
     {
         name: 'keyboard-maestro-mcp',
-        version: '1.0.0',
+        version: '1.1.0',
     },
     {
         capabilities: {
