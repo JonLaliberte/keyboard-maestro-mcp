@@ -6,19 +6,23 @@
 
 export const SERVER_INSTRUCTIONS = `This server controls Keyboard Maestro on macOS (macros, groups, actions, triggers, variables, logs).
 
-Before building or editing macros, load the km_macro_authoring prompt (also the km-guide://macro_authoring resource). It covers variable scopes, tokens vs. calculations, action XML, and a safe workflow for editing macros. For what a specific action, token or function does, refer to the Keyboard Maestro wiki at https://wiki.keyboardmaestro.com.`;
+Before building or editing macros, load the km_macro_authoring prompt (also the km-guide://macro_authoring resource). It covers variable scopes, tokens vs. calculations, action XML, and a safe workflow for editing macros. For what a specific action, token or function does, refer to the Keyboard Maestro wiki at https://wiki.keyboardmaestro.com. Add ?do=export_raw to a page URL to get its source text without the site navigation.`;
 
 export const MACRO_AUTHORING_GUIDE = `# Building Keyboard Maestro macros with this server
 
 ## Look things up first
-When you are unsure what an action, token or function does or what it is called, check the Keyboard Maestro wiki rather than guessing:
+When you are unsure what an action, token or function does or what it is called, check the Keyboard Maestro wiki rather than guessing. Fetch only the pages you need.
+
+Find the exact name on an index page (these lists are generated, so use the normal page, not the raw export):
 - Actions: https://wiki.keyboardmaestro.com/Actions
 - Tokens: https://wiki.keyboardmaestro.com/Tokens
 - Functions: https://wiki.keyboardmaestro.com/Functions
-- Variables: https://wiki.keyboardmaestro.com/manual/Variables
-- Calculations: https://wiki.keyboardmaestro.com/manual/Calculations
-- Text fields: https://wiki.keyboardmaestro.com/Text_Fields
-- Troubleshooting: https://wiki.keyboardmaestro.com/Troubleshooting
+
+Then read the page's source text by adding \`?do=export_raw\`. Page names use underscores for spaces:
+- Action: https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script?do=export_raw
+- Token: https://wiki.keyboardmaestro.com/token/SystemClipboard?do=export_raw
+- Function: https://wiki.keyboardmaestro.com/function/JSONVALUE?do=export_raw
+- Other topics: https://wiki.keyboardmaestro.com/manual/Variables?do=export_raw, https://wiki.keyboardmaestro.com/manual/Calculations?do=export_raw, https://wiki.keyboardmaestro.com/Text_Fields?do=export_raw, https://wiki.keyboardmaestro.com/Troubleshooting?do=export_raw
 
 ## Variables
 - **Global** variables persist across runs and are visible to every macro. Avoid them for scratch values.
@@ -27,7 +31,7 @@ When you are unsure what an action, token or function does or what it is called,
 - **Password** variables (name begins or ends with \`Password\` or \`PW\`) live only in memory and are never written to disk.
 - Setting a variable to the empty string deletes it. Clear Global and Password variables when done.
 - In text fields, insert a variable with the token \`%Variable%Name%\`. In calculation fields (numbers, conditions) use the bare name: \`Count + 1\`.
-- Shell scripts see variables as environment variables \`$KMVAR_Name\` (spaces become underscores). AppleScript uses \`tell application "Keyboard Maestro Engine" to getvariable "Name"\` (add \`instance kmInst\` for Local/Instance variables). Details: https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script and https://wiki.keyboardmaestro.com/manual/Scripting.
+- Shell scripts see variables as environment variables \`$KMVAR_Name\` (spaces become underscores). AppleScript uses \`tell application "Keyboard Maestro Engine" to getvariable "Name"\` (add \`instance kmInst\` for Local/Instance variables). Details: https://wiki.keyboardmaestro.com/action/Execute_a_Shell_Script?do=export_raw and https://wiki.keyboardmaestro.com/manual/Scripting?do=export_raw.
 
 ## Text fields, tokens and calculations
 - Text fields expand tokens such as \`%SystemClipboard%\`, \`%ShortDate%\`, \`%FrontWindowName%\`, \`%Calculate%1+2%\`. Check the wiki's token list for the exact name.
@@ -57,5 +61,5 @@ Remove \`ActionUID\` keys from copied XML; Keyboard Maestro assigns new ones.
 2. For risky changes, \`km_clone_macro\` first and edit the copy.
 3. Make small changes and read back the result.
 4. Test with \`km_run_macro\`, then check \`km_get_errors\` / \`km_get_log\` for failures.
-5. Disabled macros or macro groups do not fire; group activation rules (application-specific groups, palettes) also affect triggers. See https://wiki.keyboardmaestro.com/manual/Macro_Groups.
+5. Disabled macros or macro groups do not fire; group activation rules (application-specific groups, palettes) also affect triggers. See https://wiki.keyboardmaestro.com/manual/Macro_Groups?do=export_raw.
 `;
